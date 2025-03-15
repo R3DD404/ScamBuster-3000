@@ -11,6 +11,7 @@ A fun and interactive web application that simulates an email security scanner w
 - Matrix-style background effects
 - Chaos mode with threat level monitoring
 - Mobile-responsive design
+- Vercel Analytics integration
 
 ## Tech Stack 💻
 
@@ -20,6 +21,7 @@ A fun and interactive web application that simulates an email security scanner w
 - Framer Motion
 - Use-Sound
 - Lucide Icons
+- Vercel Analytics
 
 ## Getting Started 🏁
 
