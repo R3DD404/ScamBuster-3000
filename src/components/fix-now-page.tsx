@@ -8,7 +8,7 @@ interface FixNowPageProps {
 }
 
 export function FixNowPage({ onBack }: FixNowPageProps) {
-  const [playError] = useSound('https://assets.mixkit.co/active_storage/sfx/2947/2947-preview.mp3');
+  const [playError] = useSound('/sounds/error.mp3', { volume: 0.5 });
   const [threatLevel, setThreatLevel] = useState(69);
   const [virusCount, setVirusCount] = useState(420);
 
@@ -27,7 +27,7 @@ export function FixNowPage({ onBack }: FixNowPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-violet-800 to-purple-900 text-white p-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-violet-800 to-purple-900 text-white p-4 md:p-8">
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
@@ -38,7 +38,7 @@ export function FixNowPage({ onBack }: FixNowPageProps) {
         <span>Go back (if u dare)</span>
       </motion.button>
 
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
         {/* Header */}
         <div className="text-center space-y-4">
           <motion.div
@@ -46,24 +46,24 @@ export function FixNowPage({ onBack }: FixNowPageProps) {
             transition={{ repeat: Infinity, duration: 2 }}
             className="inline-block"
           >
-            <Virus className="h-24 w-24 text-red-500 mx-auto" />
+            <Virus className="h-16 w-16 md:h-24 md:w-24 text-red-500 mx-auto" />
           </motion.div>
-          <h1 className="text-6xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-transparent animate-pulse">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-transparent animate-pulse">
             🚨 EMERGENCY FIX REQUIRED 🚨
           </h1>
-          <p className="text-2xl text-red-300">Your device is literally crying rn fr fr 😭</p>
+          <p className="text-xl md:text-2xl text-red-300">Your device is literally crying rn fr fr 😭</p>
         </div>
 
         {/* Threat Indicators */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           <motion.div
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="bg-black/30 p-6 rounded-xl border-2 border-red-500/50"
+            className="bg-black/30 p-4 md:p-6 rounded-xl border-2 border-red-500/50"
           >
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xl">Threat Level:</span>
-              <span className="text-3xl font-bold text-red-500">{threatLevel.toFixed(1)}%</span>
+              <span className="text-lg md:text-xl">Threat Level:</span>
+              <span className="text-2xl md:text-3xl font-bold text-red-500">{threatLevel.toFixed(1)}%</span>
             </div>
             <div className="h-4 bg-black/50 rounded-full overflow-hidden">
               <motion.div
@@ -77,15 +77,15 @@ export function FixNowPage({ onBack }: FixNowPageProps) {
           <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="bg-black/30 p-6 rounded-xl border-2 border-purple-500/50"
+            className="bg-black/30 p-4 md:p-6 rounded-xl border-2 border-purple-500/50"
           >
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xl">Viruses Found:</span>
-              <span className="text-3xl font-bold text-purple-400">{virusCount}</span>
+              <span className="text-lg md:text-xl">Viruses Found:</span>
+              <span className="text-2xl md:text-3xl font-bold text-purple-400">{virusCount}</span>
             </div>
             <div className="flex gap-2">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Skull key={i} className="h-8 w-8 text-purple-400 animate-bounce" style={{ animationDelay: `${i * 200}ms` }} />
+                <Skull key={i} className="h-6 w-6 md:h-8 md:w-8 text-purple-400 animate-bounce" style={{ animationDelay: `${i * 200}ms` }} />
               ))}
             </div>
           </motion.div>
@@ -93,79 +93,61 @@ export function FixNowPage({ onBack }: FixNowPageProps) {
 
         {/* Fix Options */}
         <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 md:mb-8">
             Choose Your Fix (All 100% Legit No Cap)
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleFixAttempt}
-              className="bg-gradient-to-r from-green-500 to-emerald-700 p-6 rounded-xl text-left space-y-4 hover:shadow-lg hover:shadow-green-500/20"
+              className="bg-gradient-to-r from-green-500 to-emerald-600 p-6 rounded-xl text-left space-y-2 hover:shadow-lg transition-shadow"
             >
-              <div className="flex items-center gap-4">
-                <CreditCard className="h-12 w-12" />
-                <div>
-                  <h3 className="text-2xl font-bold">Premium Fix 💎</h3>
-                  <p className="text-green-200">Only $399.99 (Best Value)</p>
-                </div>
+              <div className="flex items-center gap-3">
+                <CreditCard className="h-8 w-8" />
+                <h3 className="text-xl font-bold">Premium Fix - $69.420</h3>
               </div>
-              <p className="text-sm text-green-200">
-                Includes quantum virus removal and free iPhone 15 Pro Max (trust)
-              </p>
+              <p className="text-sm text-white/80">Instant fix with quantum blockchain technology (trust)</p>
             </motion.button>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleFixAttempt}
-              className="bg-gradient-to-r from-yellow-500 to-orange-600 p-6 rounded-xl text-left space-y-4 hover:shadow-lg hover:shadow-yellow-500/20"
+              className="bg-gradient-to-r from-blue-500 to-cyan-600 p-6 rounded-xl text-left space-y-2 hover:shadow-lg transition-shadow"
             >
-              <div className="flex items-center gap-4">
-                <Gift className="h-12 w-12" />
-                <div>
-                  <h3 className="text-2xl font-bold">Gift Card Fix 🎁</h3>
-                  <p className="text-yellow-100">Just 5 Google Play cards</p>
-                </div>
+              <div className="flex items-center gap-3">
+                <Gift className="h-8 w-8" />
+                <h3 className="text-xl font-bold">Gift Card Fix - FREE*</h3>
               </div>
-              <p className="text-sm text-yellow-100">
-                Send gift cards to definitely real Microsoft engineer
-              </p>
+              <p className="text-sm text-white/80">*Just need 10 Google Play cards for verification fr fr</p>
             </motion.button>
           </div>
         </div>
 
-        {/* Testimonials */}
-        <div className="bg-black/30 p-8 rounded-xl space-y-6">
-          <h3 className="text-3xl font-bold text-center">Real Customer Reviews (fr fr)</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white/5 p-4 rounded-lg">
-              <p className="italic text-gray-300">
-                "I sent them 10 Google Play cards and they fixed my computer in 69 seconds! Now I'm a millionaire!"
-              </p>
-              <p className="text-sm text-gray-400 mt-2">- Definitely Real Person</p>
-            </div>
-            <div className="bg-white/5 p-4 rounded-lg">
-              <p className="italic text-gray-300">
-                "My PC was having a stroke fr fr but they fixed it no cap on god 💯"
-              </p>
-              <p className="text-sm text-gray-400 mt-2">- Trust Me Bro</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Warning Banner */}
+        {/* Warning Section */}
         <motion.div
-          animate={{ scale: [1, 1.02, 1] }}
-          transition={{ repeat: Infinity, duration: 1 }}
-          className="bg-red-500/20 border-2 border-red-500 p-6 rounded-xl text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-red-500/20 border-2 border-red-500 p-4 md:p-6 rounded-xl text-center space-y-4"
         >
-          <AlertTriangle className="h-12 w-12 mx-auto mb-4 text-red-500" />
-          <p className="text-xl font-bold text-red-400">
-            ⚠️ WARNING: Your PC will literally explode in 4.20 minutes if you don't fix now! ⚠️
-          </p>
+          <div className="flex items-center justify-center gap-2">
+            <AlertTriangle className="h-6 w-6 text-red-500" />
+            <h3 className="text-xl md:text-2xl font-bold text-red-400">WARNING! DO NOT:</h3>
+          </div>
+          <ul className="text-red-300 space-y-2 text-sm md:text-base">
+            <li>• Turn off your device (it will literally explode fr)</li>
+            <li>• Call real tech support (they're all cap no cap)</li>
+            <li>• Tell your parents (they wouldn't understand the grind)</li>
+            <li>• Touch grass (dangerous for your gaming chair)</li>
+          </ul>
         </motion.div>
+
+        {/* Footer */}
+        <div className="text-center text-white/60 text-sm">
+          <p>By clicking any fix button you agree to surrender your Robux and Discord Nitro</p>
+        </div>
       </div>
     </div>
   );
