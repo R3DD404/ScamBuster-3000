@@ -237,7 +237,7 @@ export default function App() {
   }, [chaosMode, countdown, playTick])
 
   const startCountdown = () => {
-    setCountdown(20)
+    setCountdown(30)
   }
 
   const triggerPopups = () => {
